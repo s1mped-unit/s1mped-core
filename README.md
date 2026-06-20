@@ -35,7 +35,8 @@ async function profile(bot, ctx, args, extra) {
     bot.stop()
 }
 
-bot.handler.message(bot, ["profile", "профиль"], bh, profile)
+bot.handler.message(bot, ["profile", "профиль"], profile, { beforeHandler: bh })
+/* beforeHandler выполняется до обработчика */
 
 ```
 
@@ -53,8 +54,8 @@ bot.handler.message(bot, ["profile", "профиль"], bh, profile)
 ### bot.reply.to(ctx, text, extra)
 ответ на сообщение
 
-### bot.handler.message(bot, ["start", "старт"], beforeHandler, handler, extra)
-создать обработчик (в будущем beforeHandler может перейти в extra)
+### bot.handler.message(bot, ["start", "старт"], handler, extra)
+создать обработчик
 
 ### bot.ping(targetId)
 задержка от отправки до результата в мс

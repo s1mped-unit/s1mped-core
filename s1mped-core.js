@@ -46,7 +46,7 @@ function checkStartup(debug, token, extra) {
  * @param {object} extra - дополнительные параметры
  * @example
  * ```js
- * import config from "../cfg.json" with { type: "JSON" }
+ * import config from "../cfg.json" with { type: "json" }
  * const token = config.telegram.token
  * const bot = new S1mpedCore(token)
  * bot.start()
@@ -54,9 +54,8 @@ function checkStartup(debug, token, extra) {
  * // больше информации
  * console.log(bot.help('core'))
  * 
- * s1pmed core 1.1.5 && s1mped utils new 1.1.5
+ * s1mped core 1.1.5 && s1mped utils new 1.1.5
  * ```
- * @returns {S1mpedCore} bot
  * 
  */
 export class S1mpedCore {

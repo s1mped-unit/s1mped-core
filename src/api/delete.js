@@ -6,11 +6,32 @@ export class Delete {
         this.debug = debug
     }
 
+    // сообщение
+    async message(chatId, messageId, extra = {}) {
+        try {
+            return await this.bot.telegram.deleteMessage(chatId, messageId, [])
+        } catch (err) {
+            console.error('не удалось удалить сообщение: ', err)
+            if (this.debug) Log.log(err.stack || err.toString(), { level: "ERROR", status: "FAILED" })
+        }
+    }
+
+    // реакция
     async reaction(chatId, messageId, extra = {}) {
         try {
-            this.bot.telegram.setMessageReaction(chatId, messageId, [])
+            return await this.bot.telegram.setMessageReaction(chatId, messageId, [])
         } catch (err) {
-            console.error('Failed to remove reaction:', err)
+            console.error('не удалось удалить реакцию: ', err)
+            if (this.debug) Log.log(err.stack || err.toString(), { level: "ERROR", status: "FAILED" })
+        }
+    }
+
+    // остановка живой локации
+    async stopLiveLocation(chatId, messageId, extra = {}) {
+        try {
+            return await this.bot.telegram.stopMessageLiveLocation(chatId, messageId, undefined, extra)
+        } catch (err) {
+            console.error('не удалось остановить живую локацию: ', err)
             if (this.debug) Log.log(err.stack || err.toString(), { level: "ERROR", status: "FAILED" })
         }
     }
