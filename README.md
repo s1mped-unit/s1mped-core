@@ -48,7 +48,7 @@ bot.handler.message(bot, ["profile", "профиль"], profile, { beforeHandler
 ### bot.send.photo(chatId, file, extra)
 отправить фото в чат
 
-### bot.edit.messageText(chatId, messageId, text, extra)
+### bot.edit.text(chatId, messageId, text, extra)
 изменить текстовое сообщение
 
 ### bot.reply.to(ctx, text, extra)
