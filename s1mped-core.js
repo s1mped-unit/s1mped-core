@@ -114,7 +114,7 @@ export class S1mpedCore {
      * ### остановить бота
      * @example
      * ```js
-    * bot.stop()
+     * bot.stop()
     * ```
      */
     async stop() {
@@ -143,17 +143,17 @@ export class S1mpedCore {
     }
 
     /**
-     * ### помощь
+     * ### Помощь
      * @example
      * ```js
      * console.log(help('core'))
      * // информация об обертке
      * 
-     * console.log(help(start))
+     * console.log(help('start'))
      * // информация о start()
      * @returns {string} строка с информацией, которую можно вывести в console.log()
      */
-    help(target) {
+    static help(target) {
         const helper = {
             core: (
                 "-=- s1mped core 1.1.5: документация -=- \n\n" +
@@ -161,6 +161,26 @@ export class S1mpedCore {
                 `const token = "BOT_TOKEN"\nconst bot = new S1mpedCore(token)\nbot.start()\nbot.send.message(chatId, "hello world")\nbot.stop()\n\n` +
                 "Больше информации можно увидеть в нашем github\n :: https://github.com/s1mped-unit/s1mped-core ::\n\n" +
                 "\// developers: {https://github.com/genbus | @s1mped}, {https://github.com/flexyj71 | @flexyj71}"
+            ),
+            proxy: (
+                `
+Пример кода с прокси
+
+import { HttpsProxyAgent } from 'hpagent'
+import { S1mpedCore } from ''
+
+const proxyAgent = new HttpsProxyAgent({
+    keepAlive: true,
+    proxy: 'http://127.0.0.1:PORT' // укажите порт, вместо PORT
+})
+
+const bot = new S1mpedCore("BOT_TOKEN", false, {
+    handlerTimeout: 180000,
+    telegram: {
+        agent: proxyAgent,
+        timeout: 120000
+    }
+})`
             )
         }
         if (!target) return " :: Укажите тему поиска"
