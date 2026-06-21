@@ -211,4 +211,65 @@ export class Send {
             if (this.debug) Log.log(err.stack || err.toString(), { level: "ERROR", status: "FAILED" })
         }
     }
+
+
+    // переслать сообщение
+    async forward(chatId, fromChatId, messageId, extra = {}) {
+        try {
+            return await this.bot.telegram.forwardMessage(chatId, fromChatId, messageId, extra)
+        } catch (err) {
+            console.error('не удалось переслать сообщение: ', err)
+            if (this.debug) Log.log(err.stack || err.toString(), { level: "ERROR", status: "FAILED" })
+        }
+    }
+
+    // скопировать сообщение
+    async copy(chatId, fromChatId, messageId, extra = {}) {
+        try {
+            return await this.bot.telegram.copyMessage(chatId, fromChatId, messageId, extra)
+        } catch (err) {
+            console.error('не удалось скопировать сообщение: ', err)
+            if (this.debug) Log.log(err.stack || err.toString(), { level: "ERROR", status: "FAILED" })
+        }
+    }
+
+    // скопировать несколько сообщений
+    async copyMessages(chatId, fromChatId, messageIds, extra = {}) {
+        try {
+            return await this.bot.telegram.copyMessages(chatId, fromChatId, messageIds, extra)
+        } catch (err) {
+            console.error('не удалось скопировать сообщения: ', err)
+            if (this.debug) Log.log(err.stack || err.toString(), { level: "ERROR", status: "FAILED" })
+        }
+    }
+
+    // ответ на callback-запрос
+    async CbQuery(callbackQueryId, text, showAlert = false, extra = {}) {
+        try {
+            return await this.bot.telegram.answerCbQuery(callbackQueryId, text, { ...extra, show_alert: showAlert })
+        } catch (err) {
+            console.error('не удалось ответить на callback: ', err)
+            if (this.debug) Log.log(err.stack || err.toString(), { level: "ERROR", status: "FAILED" })
+        }
+    }
+
+    // ответ на inline-запрос
+    async inlineQuery(inlineQueryId, results, extra = {}) {
+        try {
+            return await this.bot.telegram.answerInlineQuery(inlineQueryId, results, extra)
+        } catch (err) {
+            console.error('не удалось ответить на inline-запрос: ', err)
+            if (this.debug) Log.log(err.stack || err.toString(), { level: "ERROR", status: "FAILED" })
+        }
+    }
+
+    // ответ на webapp-запрос
+    async webAppQuery(webAppQueryId, result, extra = {}) {
+        try {
+            return await this.bot.telegram.answerWebAppQuery(webAppQueryId, result, extra)
+        } catch (err) {
+            console.error('не удалось ответить на webapp-запрос: ', err)
+            if (this.debug) Log.log(err.stack || err.toString(), { level: "ERROR", status: "FAILED" })
+        }
+    }
 }

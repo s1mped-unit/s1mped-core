@@ -4,18 +4,40 @@
 
 ## install
 
+### Linux
 ```bash
 git clone https://github.com/s1mped-unit/s1mped-core.git
 
 cd s1mped-core
 
 npm install
-
-npm start
 ```
 
 
+### Windows
+#### 1. установка из PowerShell (рекомендую)
+1. откройте powershell
+2. вставьте команды:
+```powershell
+git clone https://github.com/s1mped-unit/s1mped-core.git
+
+cd s1mped-core
+
+npm install
+```
+
+#### 2. установка zip (сложно)
+1. установите и распакуйте zip
+2. откройте powershell
+3. перейдите в директорию, куда установлен s1mped core
+4. вставьте команды для установки зависимостей:
+```powershell
+npm install
+```
+
 ## usage
+
+используйте `npm start` сразу после установки, чтобы просмотреть пример работы
 
 ```js
 import { S1mpedCore } from "./s1mped-core.js"
@@ -69,6 +91,12 @@ bot.start()
 > `npm start` для запуска
 
 * ### Переделан пример работы в README.md
+
+* ### Добавлены api модули действий админов, webhook и прочее
+
+* ### Улучшена отладка
+
+* ### Добавил тутор для установки на Windows
 
 
 ## developers

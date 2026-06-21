@@ -29,6 +29,9 @@ export class Handler {
                 }
             })
         }
+        if (this.debug) {
+            Log.log(`подключен обработчик со списком команд: ${commands}`, { status: "OK" })
+        }
     }
 
     async command(bot, commands = [], ctxHandler, extra = {}) {
@@ -46,6 +49,9 @@ export class Handler {
                 Log.log(err.stack || err.toString(), {status: "ABORTED", level: "ERROR"})
             }
         })
+        if (this.debug) {
+            Log.log(`подключен обработчик со списком команд: ${commands}`, { status: "OK" })
+        }
     }
 
     async messageNoPref(bot, commands = [], ctxHandler, extra = {}) {
@@ -70,6 +76,9 @@ export class Handler {
                 }
             })
         }
+        if (this.debug) {
+            Log.log(`подключен обработчик со списком команд: ${commands}`, { status: "OK" })
+        }
     }
 
     async callbackQuery(bot, trigger, callback, extra = {}) {
@@ -87,6 +96,9 @@ export class Handler {
                 Log.log(err.stack || err.toString(), {status: "ABORTED", level: "ERROR"})
             }
         })
+        if (this.debug) {
+            Log.log(`подключен обработчик callback со списком триггеров: ${commands}`, { status: "OK" })
+        }
     }
 
 }

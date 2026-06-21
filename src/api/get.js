@@ -89,7 +89,7 @@ export class Get {
         try {
             return await this.bot.telegram.getWebhookInfo()
         } catch (err) {
-            console.error('не удалось получить информацию о вебхуке: ', err)
+            console.error('не удалось получить информацию о webhook: ', err)
             if (this.debug) Log.log(err.stack || err.toString(), { level: "ERROR", status: "FAILED" })
         }
     }

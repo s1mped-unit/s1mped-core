@@ -6,6 +6,8 @@ import { Send } from "./src/api/send.js";
 import { Edit } from "./src/api/edit.js";
 import { Delete } from "./src/api/delete.js";
 import { Get } from "./src/api/get.js";
+import { Admin } from "./src/api/admin.js";
+import { Webhook } from "./src/api/webhook.js";
 import { S1Markup } from "./src/api/sendMarkup.js";
 
 import { Log } from "./src/utils/logger.js";
@@ -28,7 +30,7 @@ function debugMessage(debug, text) {
     }
 }
 
-function checkStartup(debug, token, extra) {
+function startup(debug, token, extra) {
     debugMessage(debug, "Чтобы отключить логи обертки, параметр debug должен быть false")
     debugMessage(debug, "Проверка на возможность запуска")
     const tokenRegex = /^\d+:[A-Za-z0-9_-]{35}$/
@@ -61,15 +63,20 @@ function checkStartup(debug, token, extra) {
 export class S1mpedCore {
     constructor(token, debug = false, extra={}) {
         this.debug = debug
-        this.bot = checkStartup(debug, token, extra)
+
+        this.bot = startup(debug, token, extra)
+
         this.handler = new Handler(this.bot)
         this.reply = new Reply(this.bot, this.debug)
         this.send = new Send(this.bot, this.debug)
         this.edit = new Edit(this.bot, this.debug)
         this.del = new Delete(this.bot, this.debug)
         this.get = new Get(this.bot, this.debug)
+        this.admin = new Admin(this.bot, this.debug)
+        this.webhook = new Webhook(this.bot, this.debug)
         this.markup = new S1Markup(this.bot, this.debug)
-        this.version = "1.1.5"
+
+        this.version = "1.2"
     }
 
     /**
