@@ -10,7 +10,7 @@ console.log(S1mpedCore.help('core'))
 //  console.log(S1mpedCore.help('proxy'))
 
 const TOKEN = await rl.question(" - Введите токен бота: ")
-const bot = new S1mpedCore(TOKEN, true)
+const bot = new S1mpedCore(TOKEN)
 
 console.log("Бот успешно создан!")
 const message = await rl.question(" - Напишите отправляемое сообщение: ")
