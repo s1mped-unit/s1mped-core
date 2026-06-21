@@ -31,6 +31,23 @@ export class Handler {
         }
     }
 
+    async command(bot, commands = [], ctxHandler, extra = {}) {
+        this.bot.command(commands, async (ctx) => {
+            try {
+                const args = ctx.match?.[1] || ''
+                if (extra.beforeHandler) {
+                    const beforeHandler = extra.beforeHandler
+                    const access = await beforeHandler(bot, ctx, args, extra)
+                    if (!access) return
+                }
+                await ctxHandler(bot, ctx, args, extra)
+            } catch(err) {
+                console.error(`ошибка выполнения команды ${cmd}, просмотрите логи`)
+                Log.log(err.stack || err.toString(), {status: "ABORTED", level: "ERROR"})
+            }
+        })
+    }
+
     async messageNoPref(bot, commands = [], ctxHandler, extra = {}) {
         for (const cmd of commands) {
             const pattern = new RegExp(

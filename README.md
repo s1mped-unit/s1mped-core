@@ -4,6 +4,7 @@
 
 ## install
 
+```bash
 git clone https://github.com/s1mped-unit/s1mped-core.git
 
 cd s1mped-core
@@ -11,6 +12,8 @@ cd s1mped-core
 npm install
 
 npm start
+```
+
 
 ## usage
 
@@ -19,26 +22,21 @@ import { S1mpedCore } from "./s1mped-core.js"
 
 const bot = new S1mpedCore("BOT_TOKEN")
 
-bot.start()
-
-/* если вы пытаетесь запустить из россии, но возвращается ошибка, используйте прокси.
-раскомментируйте следующую строку чтобы получить информацию об использовании прокси */
-//console.log(S1mpedCore.help('proxy'))
-
-async function bh(bot, ctx, args, extra) {
+async function beforeHandler(bot, ctx, args, extra) {
     await bot.send.message(ctx.message.chat.id, "это выполнится до profile")
     return true
 }
 
-async function profile(bot, ctx, args, extra) {
+async function startHandler(bot, ctx, args, extra) {
     await bot.reply.to(ctx, "hello world")
     bot.stop()
 }
 
-bot.handler.message(bot, ["profile", "профиль"], profile, { beforeHandler: bh })
-/* beforeHandler выполняется до обработчика */
+bot.handler.message(bot, ["старт", "start"], startHandler, { beforeHandler: beforeHandler })
 
+bot.start()
 ```
+
 
 ## core api
 
@@ -60,3 +58,27 @@ bot.handler.message(bot, ["profile", "профиль"], profile, { beforeHandler
 ### bot.ping(targetId)
 задержка от отправки до результата в мс
 
+
+## last changes
+
+* ### Добавлен bot.handler.command
+> Принимает вторым аргументом массив с командами.
+>> Пример: bot.handler.command(bot, ["start"], startHandler)
+
+* ### Улучшен index.js
+> `npm start` для запуска
+
+* ### Переделан пример работы в README.md
+
+
+## developers
+
+<a href="https://t.me/s1mped">
+    <img src="https://cdn.simpleicons.org/telegram", width="20">
+    <b>s1mped (разработчик)</b>
+</a>
+
+<a href="https://t.me/flexyj71">
+    <img src="https://cdn.simpleicons.org/telegram", width="20">
+    <b>flexyj71 (тестер)</b>
+</a>
